@@ -1,0 +1,41 @@
+<div class="container parentContainer"
+     fxLayout="column"
+     fxLayout.xs="column"
+     fxLayoutAlign=""
+     fxLayoutGap.xs="0"
+     >
+	
+	<div class="headerContainer">
+		<h1 *ngIf="authService.user | async">Event Room Booking App {{ (authService.user | async)?.email }}</h1>
+	</div>
+	
+	<div class="formContainer"
+	     fxLayout
+	     fxLayout.xs="column"
+	     fxLayoutAlign="center"
+	     fxFlex="70%">
+	  <div class="leftContainer" fxFlex="50%">
+	  	<img src="../assets/booking-logo.png">
+	  </div>
+	  <div fxLayout="column" fxLayoutAlign="center center" class="rightContainer" fxFlex="50%">
+	  	<form>
+	  		<mat-form-field>
+	  			<input matInput type="text" [(ngModel)]="model.username" name="username" placeholder="Username">
+	  		</mat-form-field>
+
+	  		<mat-form-field>
+	  			<input matInput type="password" [(ngModel)]="model.password" name="password" placeholder="Password">
+	  		</mat-form-field>
+
+	  	</form>
+	  	<button mat-button (click)="login()">Login</button>
+	  	<a class="forgotPassword" href="">Forgot password?</a>
+	  	<p (click)="logout()">Logout</p>
+	  </div> 
+	</div>
+
+	<div class="footerContainer">
+		Designed and Developed by CRIBBL Services
+	</div>
+
+</div>
