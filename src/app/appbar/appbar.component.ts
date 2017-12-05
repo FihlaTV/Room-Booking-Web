@@ -15,10 +15,6 @@ clubName = "CRIBBL"
   				private router:Router,
           private db:FirebaseDatabaseService) { }
 
-getAllClubs() {
-  this.db.getAllClubs();
-}
-
 logout() {
     this.authService.logout().then(data => {
     	this.router.navigate(['/login']);
