@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {FirebaseAuthenticationService} from '../services/firebase-authentication.service'
-
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-login-page',
@@ -11,10 +12,21 @@ import {FirebaseAuthenticationService} from '../services/firebase-authentication
 export class LoginPageComponent implements OnInit {
 	 model: any = {};
 
-  constructor(public authService:FirebaseAuthenticationService) { }
+  constructor(public authService:FirebaseAuthenticationService,
+              private router:Router,) { 
+
+  this.router = router;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    router.navigate(['/app']);
+  } else {
+    console.log("NOT logged in");
+  }
+});
+  }
 
  login() {
-	this.authService.login(this.model.username, this.model.password);	
+	this.authService.login(this.model.username, this.model.password);
   }
 
  signup() {
@@ -26,6 +38,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.router.navigate(['/app']) 
   }
 
 }

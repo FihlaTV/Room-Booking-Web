@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'
 import 'rxjs/add/operator/map';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { Routes, RouterModule } from '@angular/router';
 
 
 // Angular material
@@ -26,6 +27,13 @@ import { AppbarComponent } from './appbar/appbar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 // ===================================================================================
+
+const routes: Routes = [
+  {path: 'home', component : AppComponent},
+  {path: 'login', component : LoginPageComponent},
+  {path: 'app', component : AppbarComponent}
+
+]
 
 // services
 import { AuthenticationService } from './services/authentication.service';
@@ -50,7 +58,6 @@ export const firebaseConfig = {
 };
 // ========================================================================================
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +66,7 @@ export const firebaseConfig = {
     LoginPageComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
