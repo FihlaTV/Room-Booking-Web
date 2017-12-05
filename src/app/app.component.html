@@ -1,5 +1,16 @@
-<app-appbar *ngIf="authService.user | async"></app-appbar>
 <!-- <app-side-nav></app-side-nav> -->
 
-<router-outlet></router-outlet>
+<div
+     fxLayout="column"
+     fxLayoutAlign="center"
+     fxJustifyContent="space-between"
+     class="test"
+     >
+
+<!-- <app-appbar fxFlex="20%"></app-appbar> -->
+<app-appbar *ngIf="authService.user | async"></app-appbar>
+<router-outlet fxFlex="80%"></router-outlet>
+<!-- <app-footer fxFlex="20%"></app-footer> -->
+
+</div>
  <!-- <app-login-page></app-login-page> -->

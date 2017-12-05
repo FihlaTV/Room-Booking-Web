@@ -9,14 +9,17 @@ import { Observable } from 'rxjs/Observable';
 export class FirebaseAuthenticationService {
 user: Observable<firebase.User>;
   
-  constructor(private firebaseAuth: AngularFireAuth) {
-    this.firebaseAuth.authState.subscribe((auth) => {
-      this.authState = auth;
-  });
-}
+  constructor(public firebaseAuth: AngularFireAuth) {
+   // this.firebaseAuth.authState.subscribe((auth) => {
+   //   this.authState = auth;
+     this.user = firebaseAuth.authState;
+  }
+
 
   getUser() {
-    return this.authState;
+    return this.firebaseAuth
+    .auth
+    .currentUser();
   }
 
   signup(email: string, password: string) {
@@ -54,6 +57,4 @@ user: Observable<firebase.User>;
         console.log('Something went wrong:',err.message);
       });
   }
-
-
 }

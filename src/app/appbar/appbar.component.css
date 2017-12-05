@@ -1,4 +1,3 @@
-
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -6,4 +5,26 @@
 app-icon {
 	padding: 20px;
 	margin-top: 6px;
+}
+
+button {
+	font-size: 20px;
+}
+
+button mat-icon {
+	font-size: 18px;
+	margin-top: 2px;
+	margin-right: -5px;
+}
+
+span .clubName {
+	padding-right: 10px;
+}
+
+span .clubName:hover {
+	cursor: pointer;
+}
+
+.menuButton mat-icon{
+	font-size: 25px;
 }

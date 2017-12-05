@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FirebaseAuthenticationService } from './../services/firebase-authentication.service';
+
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
- constructor() { }
+ constructor(public authService:FirebaseAuthenticationService) { }
 
 
   ngOnInit() {

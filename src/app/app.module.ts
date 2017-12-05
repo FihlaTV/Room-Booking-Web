@@ -18,6 +18,8 @@ import {
 } from '@angular/material';
 import { MatInputModule } from '@angular/material/input'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { IconComponent } from './material-components/icon/icon.component';
+import {MatCardModule} from '@angular/material/card';
 // ==================================================================================
 
 
@@ -26,13 +28,20 @@ import { AppComponent } from './app.component';
 import { AppbarComponent } from './appbar/appbar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { EventBookingComponent } from './components/event-booking/event-booking.component'
+import { RoomBookingComponent } from './components/room-booking/room-booking.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 // ===================================================================================
 
 const routes: Routes = [
-  // {path: '/', redirectTo:'/login', component : AppComponent, pathMatch: 'full'},
+  {path: 'app', component : AppComponent},
   {path: 'login', component : LoginPageComponent},
-  {path: 'app', component : AppbarComponent},
-  {path: 'sidenav', component : SideNavComponent}
+  {path: 'eventBooking', component : EventBookingComponent},
+  {path: 'roomBooking', component : RoomBookingComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'home', component: HomeComponent}
 
 ]
 
@@ -48,7 +57,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
-import { IconComponent } from './material-components/icon/icon.component';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDb_u_IGv1QMaSO2pswLK5zZhiTCRevj_c",
@@ -66,7 +75,12 @@ export const firebaseConfig = {
     AppbarComponent,
     SideNavComponent,
     LoginPageComponent,
-    IconComponent
+    IconComponent,
+    FooterComponent,
+    EventBookingComponent,
+    RoomBookingComponent,
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -80,6 +94,7 @@ export const firebaseConfig = {
     MatMenuModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
 	  HttpModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),

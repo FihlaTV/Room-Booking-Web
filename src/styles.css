@@ -4,9 +4,13 @@
 
 body {
 	/*padding: 2em 23em;*/
-	background-color: #464d57;
+	/*background-color: #464d57;*/
 }
 
 .full-width {
 	width: 100%;
+}
+
+button .active {
+	background-color: rgba(0,0,0,0.1);
 }

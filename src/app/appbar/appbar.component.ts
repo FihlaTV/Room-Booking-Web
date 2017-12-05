@@ -9,7 +9,7 @@ import {FirebaseAuthenticationService} from '../services/firebase-authentication
 })
 export class AppbarComponent implements OnInit {
 
-screenName = "Login"
+clubName = "CRIBBL"
   constructor(public authService:FirebaseAuthenticationService,
   				private router:Router) { }
 

@@ -18,7 +18,7 @@ export class LoginPageComponent implements OnInit {
   this.router = router;
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    router.navigate(['/app']);
+    router.navigate(['/home']);
   } else {
     console.log("NOT logged in");
   }

@@ -1,0 +1,9 @@
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+app-icon {
+	padding: 20px;
+	margin-top: 6px;
+}
