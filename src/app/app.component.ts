@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { FirebaseAuthenticationService } from './services/firebase-authentication.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +11,6 @@ import { Http } from '@angular/http';
 export class AppComponent {
   
   
-  constructor() { }
+  constructor(public authService: FirebaseAuthenticationService) { }
 
 }

@@ -10,11 +10,17 @@ export class FirebaseAuthenticationService {
 user: Observable<firebase.User>;
   
   constructor(private firebaseAuth: AngularFireAuth) {
-    this.user = firebaseAuth.authState;
+    this.firebaseAuth.authState.subscribe((auth) => {
+      this.authState = auth;
+  });
+}
+
+  getUser() {
+    return this.authState;
   }
 
   signup(email: string, password: string) {
-    this.firebaseAuth
+    return this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
@@ -26,7 +32,7 @@ user: Observable<firebase.User>;
   }
 
   login(email: string, password: string) {
-    this.firebaseAuth
+    return this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
@@ -38,9 +44,15 @@ user: Observable<firebase.User>;
   }
 
   logout() {
-    this.firebaseAuth
+    return this.firebaseAuth
       .auth
-      .signOut();
+      .signOut()
+      .then(value => {
+        console.log("logged out successfully");
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
   }
 
 

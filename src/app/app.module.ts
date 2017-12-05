@@ -29,9 +29,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 // ===================================================================================
 
 const routes: Routes = [
-  {path: 'home', component : AppComponent},
+  // {path: '/', redirectTo:'/login', component : AppComponent, pathMatch: 'full'},
   {path: 'login', component : LoginPageComponent},
-  {path: 'app', component : AppbarComponent}
+  {path: 'app', component : AppbarComponent},
+  {path: 'sidenav', component : SideNavComponent}
 
 ]
 
@@ -47,6 +48,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
+import { IconComponent } from './material-components/icon/icon.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDb_u_IGv1QMaSO2pswLK5zZhiTCRevj_c",
@@ -63,7 +65,8 @@ export const firebaseConfig = {
     AppComponent,
     AppbarComponent,
     SideNavComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    IconComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
