@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { IconComponent } from './material-components/icon/icon.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 // ==================================================================================
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
 // services
 import { AuthenticationService } from './services/authentication.service';
 import { FirebaseAuthenticationService } from './services/firebase-authentication.service';
+import { FirebaseDatabaseService } from './services/firebase-database.service';
 // ====================================================================================
 
 
@@ -87,7 +89,8 @@ export const firebaseConfig = {
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-	  MatToolbarModule,
+	  
+    MatToolbarModule,
 	  MatIconModule,
 	  MatSidenavModule,
     MatListModule,
@@ -95,13 +98,15 @@ export const firebaseConfig = {
     MatInputModule,
     MatButtonModule,
     MatCardModule,
+    MatGridListModule,
 	  HttpModule,
     FormsModule,
+
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [AuthenticationService, FirebaseAuthenticationService],
+  providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
