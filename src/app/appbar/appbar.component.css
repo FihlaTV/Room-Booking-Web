@@ -17,6 +17,10 @@ button mat-icon {
 	margin-right: -5px;
 }
 
+.screenName {
+	margin: 0px auto;
+}
+
 .clubName {
 	padding-right: 10px;
 }

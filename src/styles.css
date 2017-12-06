@@ -5,6 +5,7 @@
 body {
 	/*padding: 2em 23em;*/
 	background-color: #EAECED;
+	height: 100%;
 }
 
 .full-width {
@@ -12,5 +13,5 @@ body {
 }
 
 .active {
-	background-color: #6F7DC8;
+	background-color: #37479E;
 }

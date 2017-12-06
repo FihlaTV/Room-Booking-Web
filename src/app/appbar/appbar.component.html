@@ -1,25 +1,9 @@
 <mat-toolbar color="primary">
-    <span class="clubName" routerLink="/home">{{clubName}}</span>
+    <span class="clubName" routerLink="/home">ClubName and Logo</span>
 
+    <span class="screenName">ScreenName</span>
     <!-- <a routerLink="/eventBooking"> -->
-    <button mat-button routerLink="/eventBooking" routerLinkActive="active current">
-    <mat-icon>event</mat-icon>
-      Event Booking
-    </button>
-    <!-- </a> -->
-
-    <button mat-button routerLink="/roomBooking" routerLinkActive="active current">
-    <mat-icon>room</mat-icon>
-      Room Booking
-    </button>
-
-    <button mat-button (click)="getAllClubs()">
-    <mat-icon>room</mat-icon>
-      Get all clubs
-    </button>
-
-    <span class="example-spacer"></span>
-    
+    <!-- <span class="example-spacer"></span> -->
     <button class="menuButton" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>

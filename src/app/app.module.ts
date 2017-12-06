@@ -45,7 +45,8 @@ const routes: Routes = [
   {path: 'eventBooking', component : EventBookingComponent},
   {path: 'roomBooking', component : RoomBookingComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'home', component: HomeComponent}
+  {path: 'home', component: HomeComponent},
+  {path: 'sidenav', component: SideNavComponent}
 
 ]
 

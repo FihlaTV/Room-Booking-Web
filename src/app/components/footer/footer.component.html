@@ -1,26 +1,7 @@
 <mat-toolbar color="primary">
-    <span>{{screenName}}</span>
+    <span>FOOTER</span>
     <span class="example-spacer"></span>
-    <app-icon [icon]="'face'"></app-icon>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
 </mat-toolbar>
-
-	<mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="getUser()">
-        <mat-icon>face</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voicemail</span>
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
-
-<!-- <router-outlet></router-outlet> -->
-
