@@ -1,11 +1,20 @@
-<mat-horizontal-stepper linear="true">
+<mat-horizontal-stepper linear="false">
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>General Details</ng-template>
       
-      <mat-form-field>
-        <input type="text" matInput placeholder="Title" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <div class="flexContainer">
+        <div class="titleContainer">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Title" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-slide-toggle checked="true">
+            <span class="checkboxLabel">Internal</span>
+          </mat-slide-toggle>
+        </div>
+      </div>
 
       <mat-form-field>
         <textarea matInput 
@@ -18,18 +27,26 @@
         </textarea>
       </mat-form-field>
 
-      <mat-form-field class="half">
-        <input matInput [matDatepicker]="picker" placeholder="Start date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field class="half">
-        <input matInput [matDatepicker]="picker2" placeholder="End date">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-      
-      <div>
+
+
+      <div class="flexContainer">
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Start date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="End date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="buttonContainer">
         <button mat-raised-button matStepperNext color="primary">Next</button>
       </div>
     
@@ -39,15 +56,38 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Publicity Details
       </ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
+
+    <div class="flexContainer">
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <mat-checkbox class="example-margin"><span class="checkboxLabel">Poster</span></mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox class="example-margin"><span class="checkboxLabel">Infodesk</span></mat-checkbox>
+      </div>
+    
+      <div>
+        <mat-checkbox class="example-margin"><span class="checkboxLabel">Banner</span></mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox class="example-margin"><span class="checkboxLabel">Digital Board</span></mat-checkbox>
+      </div>
+    </div>
+      
+      <div class="buttonContainer">
+        <button mat-raised-button matStepperPrevious color="primary">Back</button>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
       </div>
     </form>
   </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Monetary Details</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.

@@ -24,6 +24,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 // ==================================================================================
 
 
@@ -107,6 +109,8 @@ export const firebaseConfig = {
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
 
     HttpModule,
     FormsModule,

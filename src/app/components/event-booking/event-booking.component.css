@@ -1,9 +1,10 @@
 mat-horizontal-stepper {
-	width: 50%;
+	width: 70%;
 	margin: 0px auto;
 	margin-top: 20px;
 	text-align: center;
 	font-size: 18px;
+
 
 	border-radius: 6px;
 	box-shadow: 5px 10px #DADDE0;
@@ -14,14 +15,31 @@ form {
 	width: 80%;
 	margin: 0px auto;
 	text-align: center;
+	margin-top: 20px;
 }
 
 mat-form-field {
 	width: 100%;
 }
 
-.half{
-	float: left;
-	width: 50%;
-	padding: 0px 10px;
+.checkboxLabel {
+	font-weight: 100;
+}
+
+.flexContainer {
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonContainer {
+	margin-top: 20px;
+}
+
+.titleContainer {
+	width: 80%;
+}
+
+mat-slide-toggle {
+	margin-top: 20px;
 }
