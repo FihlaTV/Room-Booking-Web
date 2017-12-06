@@ -27,6 +27,7 @@ export class LoginPageComponent implements OnInit {
 
  login() {
 	this.authService.login(this.model.username, this.model.password);
+  localStorage.setItem('isLoggedIn', 'true');
   }
 
  signup() {

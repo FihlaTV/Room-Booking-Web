@@ -1,3 +1,57 @@
-<p>
-  event-booking works!
-</p>
+<mat-horizontal-stepper linear="true">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>General Details</ng-template>
+      
+      <mat-form-field>
+        <input type="text" matInput placeholder="Title" formControlName="firstCtrl" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput 
+                  placeholder="Description"
+                  formControlName="firstCtrl" 
+                  required
+                  matTextareaAutosize
+                  matAutosizeMinRows="2"
+                  matAutosizeMaxRows="5">
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field class="half">
+        <input matInput [matDatepicker]="picker" placeholder="Start date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="half">
+        <input matInput [matDatepicker]="picker2" placeholder="End date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      
+      <div>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Publicity Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

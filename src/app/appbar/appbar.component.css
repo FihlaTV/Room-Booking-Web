@@ -17,11 +17,11 @@ button mat-icon {
 	margin-right: -5px;
 }
 
-span .clubName {
+.clubName {
 	padding-right: 10px;
 }
 
-span .clubName:hover {
+.clubName:hover {
 	cursor: pointer;
 }
 

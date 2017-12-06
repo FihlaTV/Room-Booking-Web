@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms'
 import 'rxjs/add/operator/map';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { Routes, RouterModule } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 // Angular material
@@ -15,12 +15,15 @@ import {
   MatListModule,
   MatMenuModule,
   MatButtonModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import { MatInputModule } from '@angular/material/input'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { IconComponent } from './material-components/icon/icon.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 // ==================================================================================
 
 
@@ -55,6 +58,7 @@ import { FirebaseDatabaseService } from './services/firebase-database.service';
 
 // firebase
 import { AngularFireModule } from 'angularfire2';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -89,7 +93,7 @@ export const firebaseConfig = {
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-	  
+
     MatToolbarModule,
 	  MatIconModule,
 	  MatSidenavModule,
@@ -99,12 +103,17 @@ export const firebaseConfig = {
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-	  HttpModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    HttpModule,
     FormsModule,
+    ReactiveFormsModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService],
   bootstrap: [AppComponent]

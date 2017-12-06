@@ -26,7 +26,7 @@
 </mat-toolbar>
 
 	<mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/profile">
+      <button mat-menu-item (click)="getUser()">
         <mat-icon>face</mat-icon>
         <span>Profile</span>
       </button>

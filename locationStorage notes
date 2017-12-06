@@ -1,0 +1,38 @@
+localStorage and sessionStorage accomplish the exact same thing and have the same API, but with sessionStorage the data is persisted only until the window or tab is closed, while with localStorage the data is persisted until the user manually clears the browser cache or until your web app clears the data. The examples in this post are for localStorage, but the same syntax works for sessionStorage.
+
+for (let i = 0; i < localStorage.length; i++){
+  let key = localStorage.key(i);
+  let value = localStorage.getItem(key);
+  console.log(key, value);
+}
+
+
+Storing Json Objects
+
+Only strings can be stored with localStorage or sessionStorage, but you can use JSON.stringify to store more complex objects and JSON.parse to read them:
+
+// Create item:
+let myObj = { name: 'Skip', breed: 'Labrador' };
+localStorage.setItem(key, JSON.stringify(myObj));
+
+// Read item:
+let item = JSON.parse(localStorage.getItem(key));
+
+
+Clearing Everything
+
+Here’s how to clear everything that’s stored in localStorage:
+
+localStorage.clear();
+
+Creating Entries
+
+Create key/value pair entries with localStorage.setItem, providing a key and a value:
+
+let key = 'Item 1';
+localStorage.setItem(key, 'Value');
+Reading Entries
+
+Read entries with localStorage.getItem:
+
+let myItem = localStorage.getItem(key);
