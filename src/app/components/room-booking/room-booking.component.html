@@ -1,33 +1,30 @@
 
-<mat-horizontal-stepper linear="true">
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-raised-button matStepperNext color="primary">Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+<div *ngIf="!title; else formInfo">
+  
+
+</div>
+
+<form [formGroup]="rForm" (submit)="addPost(rForm.value)">
+<mat-form-field>
+  <input matInput placeholder="title" formControlName="title">
+</mat-form-field>
+<p *ngIf="!rForm.controls['title'].valid && rForm.controls['title'].touched">{{titleAlert}}</p>
+<!-- <p *ngIf="!rForm.controls['title'].valid">{{titleAlert}}</p> -->
+
+
+<mat-form-field>
+  <textarea matInput placeholder="description" formControlName="desc"></textarea>
+</mat-form-field>
+
+<mat-checkbox formControlName="check" name="checkName" value="1" true>Poster</mat-checkbox>
+  
+
+<input type="submit" [disabled]="!rForm.valid">
+
+</form>
+
+
+<ng-template #formInfo>
+<p>{{title}}</p>
+<p>{{desc}}</p>
+</ng-template>

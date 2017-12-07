@@ -8,18 +8,45 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RoomBookingComponent implements OnInit {
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  rForm: FormGroup;
+  title:string = '';
+  desc:string = '';
+  post: any;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  titleAlert:string = "title is required";
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+  constructor(private fb: FormBuilder) {
+
+    this.rForm = fb.group({
+      'title' : [null, Validators.required, false],
+      'desc' : [null, Validators.compose(
+                [Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(300)])],
+      'check' : ''
     });
   }
+
+  addPost(post) {
+    this.title = post.title;
+    this.desc = post.desc;
+  }
+
+  ngOnInit() {
+        console.log('init');
+
+    this.rForm.get('check').valueChanges.subscribe((checkName) => {
+      if(checkName == "1") {
+        this.rForm.get('title').setValidators([Validators.required, Validators.minLength(4)]);
+        this.titleAlert = "atleast 4 chars rqd now";
+        console.log('inside if');
+      }
+      else {
+        this.rForm.get('title').setValidators([Validators.required]);
+        console.log('inside else');
+      }
+      this.rForm.get('title').updateValueAndValidity();
+    })
+   }
 
 }
