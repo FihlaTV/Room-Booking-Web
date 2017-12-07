@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FirebaseAuthenticationService } from './../services/firebase-authentication.service';
+import { FirebaseDatabaseService } from './../services/firebase-database.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,8 +9,13 @@ import { FirebaseAuthenticationService } from './../services/firebase-authentica
 })
 export class SideNavComponent implements OnInit {
 
- constructor(public authService:FirebaseAuthenticationService) { }
+ constructor(public dbService:FirebaseDatabaseService) { }
 
+ getAllClubs() {
+ 	(this.dbService.getAllClubs().subscribe(val => {
+ 		console.log(val);
+ 	}));
+ }
 
   ngOnInit() {
   }

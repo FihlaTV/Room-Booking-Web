@@ -16,8 +16,13 @@
   <textarea matInput placeholder="description" formControlName="desc"></textarea>
 </mat-form-field>
 
-<mat-checkbox formControlName="check" name="checkName" value="1" true>Poster</mat-checkbox>
+<mat-checkbox formControlName="check" value="1" true>Poster</mat-checkbox>
   
+  <mat-form-field>
+    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Start date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
 <input type="submit" [disabled]="!rForm.valid">
 
