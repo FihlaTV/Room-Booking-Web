@@ -13,6 +13,16 @@ import * as moment from 'moment';
 
 export class RoomBookingComponent implements OnInit {
 
+static Publicity = class {
+  type: string;
+  qty: number;
+
+  constructor() {
+    this.type = "poster";
+    this.qty = 4;
+  }
+}
+
 static Event = class {
   title: string;
   desc: string;
@@ -21,8 +31,10 @@ static Event = class {
   start_date: string;
   end_date: string;
   publish_date: string;
+  publ: any;
 
   constructor() {
+    this.publ = new RoomBookingComponent.Publicity();
     this.end_date = moment("12-25-1995", "MM-DD-YYYY").format('L');
     this.publish_date = moment().format('L');
   }
@@ -31,6 +43,7 @@ static Event = class {
   title:string = '';
   desc:string = '';
   post: any;
+  date: string;
 
   titleAlert:string = "title is required";
 
@@ -53,15 +66,15 @@ static Event = class {
     this.desc = post.desc;
     let x = moment(post.date).format("L");
     // console.log(post.title + "   " + post.check);
-    console.log(x);
+    // console.log(x);
     let event  = new RoomBookingComponent.Event();
     event.title = post.title;
     event.desc = post.desc;
     event.check = post.check;
     event.start_date = moment(post.date).format('L');
-    console.log(event);
-
-    // console.log(this.dbService.pushToDB(this.rForm.value));
+    event.publ.type="sfdfsdf";
+    // console.log(event);
+    this.dbService.pushToDB(event);
   }
 
   ngOnInit() {

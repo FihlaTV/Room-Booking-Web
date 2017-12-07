@@ -14,7 +14,7 @@ export class FirebaseDatabaseService {
 	clubs: any[];
 
   constructor(public db: AngularFireDatabase) {
-   	this.itemsRef = this.db.list('test');
+   	this.itemsRef = this.db.list("test");
 
    	// this.items = this.itemsRef.snapshotChanges().map(changes => {
     //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -26,10 +26,8 @@ export class FirebaseDatabaseService {
    }
 
    pushToDB(obj) {
-    return this.itemsRef.push(obj);
-   }
+    console.log(this.itemsRef.push(obj));
+    }
+    // return this.itemsRef.push(obj);
 
 }
-
-
-
