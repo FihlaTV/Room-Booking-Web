@@ -28,7 +28,13 @@
 
 </form>
 
+<form [formGroup]="zForm">
+<mat-form-field>
+  <input matInput placeholder="name" formControlName="name">
+</mat-form-field>
+<button (click)="secSub(zForm.value)">HELLO</button>
 
+</form>
 <ng-template #formInfo>
 <p>{{title}}</p>
 <p>{{desc}}</p>

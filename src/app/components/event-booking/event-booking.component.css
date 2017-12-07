@@ -12,7 +12,7 @@ mat-horizontal-stepper {
 
 form {
 	/*background-color: red;*/
-	width: 80%;
+	width: 90%;
 	margin: 0px auto;
 	text-align: center;
 	margin-top: 20px;
@@ -30,6 +30,7 @@ mat-form-field {
 	width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
 .buttonContainer {
@@ -42,4 +43,34 @@ mat-form-field {
 
 mat-slide-toggle {
 	margin-top: 20px;
+}
+
+.locationContainer {
+	/*background-color: yellow;*/
+	margin: 0px auto;
+	width: 100%;
+}
+.locationChildCont {
+	width: 100%;
+	padding: 10px;
+	/*background-color: red;*/
+	border: 1px solid rgba(0,0,0,0.1);
+	text-align: left;
+	min-height: 50px;
+}
+.locationChildCont > span{
+	float: left;
+	min-width: 85%;
+}
+
+.locationChildCont > mat-slide-toggle{
+	margin-top: -4px;
+}
+
+.locationChildCont > mat-checkbox{
+	margin-top: -4px;	
+}
+
+.childHeading {
+	font-weight: 700;
 }

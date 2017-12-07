@@ -19,7 +19,6 @@ static Publicity = class {
 
   constructor() {
     this.type = "poster";
-    this.qty = 4;
   }
 }
 
@@ -32,6 +31,7 @@ static Event = class {
   end_date: string;
   publish_date: string;
   publ: any;
+  something:string;
 
   constructor() {
     this.publ = new RoomBookingComponent.Publicity();
@@ -39,6 +39,7 @@ static Event = class {
     this.publish_date = moment().format('L');
   }
 }
+  zForm: FormGroup;
   rForm: FormGroup;
   title:string = '';
   desc:string = '';
@@ -59,22 +60,31 @@ static Event = class {
       'check' : '',
       'date' : ''
     });
+
+    this.zForm = fb.group({
+      'name': ''
+    })
   }
 
   addPost(post) {
+  event  = new RoomBookingComponent.Event();
     this.title = post.title;
     this.desc = post.desc;
     let x = moment(post.date).format("L");
     // console.log(post.title + "   " + post.check);
     // console.log(x);
-    let event  = new RoomBookingComponent.Event();
     event.title = post.title;
     event.desc = post.desc;
     event.check = post.check;
     event.start_date = moment(post.date).format('L');
     event.publ.type="sfdfsdf";
-    // console.log(event);
-    this.dbService.pushToDB(event);
+    console.log(event);
+  }
+
+  secSub(post) {
+    this.event.something="somehitg";
+    console.log(this.event);
+    // this.dbService.pushToDB(this.event);
   }
 
   ngOnInit() {
