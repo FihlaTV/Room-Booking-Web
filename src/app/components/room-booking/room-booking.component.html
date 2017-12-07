@@ -6,7 +6,7 @@
 
 <form [formGroup]="rForm" (submit)="addPost(rForm.value)">
 <mat-form-field>
-  <input matInput placeholder="title" formControlName="title">
+  <input matInput placeholder="title" formControlName="title" [(ngModel)]="value">
 </mat-form-field>
 <p *ngIf="!rForm.controls['title'].valid && rForm.controls['title'].touched">{{titleAlert}}</p>
 <!-- <p *ngIf="!rForm.controls['title'].valid">{{titleAlert}}</p> -->

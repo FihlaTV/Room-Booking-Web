@@ -1,17 +1,24 @@
+form {
+	/*background-color: red;*/
+	width: 80%;
+	margin: 0px auto;
+	text-align: center;
+	margin-top: 20px;
+	border-radius: 6px;
+	box-shadow: 5px 10px #DADDE0;
+	background-color: red;
+}
+
 mat-horizontal-stepper {
-	width: 70%;
+	width: 80%;
 	margin: 0px auto;
 	margin-top: 20px;
 	text-align: center;
 	font-size: 18px;
-
-
-	border-radius: 6px;
-	box-shadow: 5px 10px #DADDE0;
+	background-color: yellow;
 }
 
-form {
-	/*background-color: red;*/
+.stepperContent {
 	width: 80%;
 	margin: 0px auto;
 	text-align: center;

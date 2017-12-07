@@ -44,18 +44,20 @@ static Event = class {
   desc:string = '';
   post: any;
   date: string;
-
+  value="sdfsdfsdf";
   titleAlert:string = "title is required";
+  descValidator:any = Validators.compose(
+              [Validators.required,
+              Validators.minLength(5),
+              Validators.maxLength(300)]);
 
   constructor(private fb: FormBuilder,
               private dbService: FirebaseDatabaseService) {
 
+
     this.rForm = fb.group({
-      'title' : [null, Validators.required, false],
-      'desc' : [null, Validators.compose(
-                [Validators.required,
-                Validators.minLength(5),
-                Validators.maxLength(300)])],
+      'title' : [null, Validators.required],
+      'desc' : [null, this.descValidator],
       'check' : '',
       'date' : ''
     });
