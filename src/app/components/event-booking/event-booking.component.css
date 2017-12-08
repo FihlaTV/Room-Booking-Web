@@ -4,8 +4,6 @@ mat-horizontal-stepper {
 	margin-top: 20px;
 	text-align: center;
 	font-size: 18px;
-
-
 	border-radius: 6px;
 	box-shadow: 5px 10px #DADDE0;
 }
@@ -24,6 +22,7 @@ mat-form-field {
 
 .checkboxLabel {
 	font-weight: 100;
+	max-width: 80px;
 }
 
 .flexContainer {
@@ -31,6 +30,7 @@ mat-form-field {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .buttonContainer {
@@ -48,15 +48,14 @@ mat-slide-toggle {
 .locationContainer {
 	/*background-color: yellow;*/
 	margin: 0px auto;
-	width: 100%;
+	width: 70%;
 }
 .locationChildCont {
 	width: 100%;
 	padding: 10px;
-	/*background-color: red;*/
 	border: 1px solid rgba(0,0,0,0.1);
 	text-align: left;
-	min-height: 50px;
+	min-height: 60px;
 }
 .locationChildCont > span{
 	float: left;
@@ -73,4 +72,45 @@ mat-slide-toggle {
 
 .childHeading {
 	font-weight: 700;
+}
+
+.poster {
+	background-color: red;
+	min-width: 40%;
+}
+
+.priceContainer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.key {
+	min-width: 30%;
+	border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.value {
+	margin-left: 10px;
+	min-width: 70%;
+}
+
+.confirmContainer {
+	display: flex;
+	min-height: 0px;
+	justify-content: space-between;
+	vertical-align: middle;
+	background-color: #FAFAFB;
+	cursor: default;
+}
+
+.confirmContainer:hover {
+	color: #e91e63;
+}
+
+.value > textarea {
+	width:100%;
+	background-color: #FAFAFB;
+	border: none;
+	border-left: 1px solid rgba(0,0,0,0.1);
+	padding-left: 5px; 
 }

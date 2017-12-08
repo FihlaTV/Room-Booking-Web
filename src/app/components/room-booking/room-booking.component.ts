@@ -45,6 +45,7 @@ static Event = class {
   desc:string = '';
   post: any;
   date: string;
+  event  = new RoomBookingComponent.Event();
 
   titleAlert:string = "title is required";
 
@@ -58,7 +59,8 @@ static Event = class {
                 Validators.minLength(5),
                 Validators.maxLength(300)])],
       'check' : '',
-      'date' : ''
+      'date' : '',
+      'external':''
     });
 
     this.zForm = fb.group({
@@ -67,18 +69,18 @@ static Event = class {
   }
 
   addPost(post) {
-  event  = new RoomBookingComponent.Event();
+    debugger;
     this.title = post.title;
     this.desc = post.desc;
     let x = moment(post.date).format("L");
     // console.log(post.title + "   " + post.check);
     // console.log(x);
-    event.title = post.title;
-    event.desc = post.desc;
-    event.check = post.check;
-    event.start_date = moment(post.date).format('L');
-    event.publ.type="sfdfsdf";
-    console.log(event);
+    this.event.title = post.title;
+    this.event.desc = post.desc;
+    this.event.check = post.check;
+    this.event.start_date = moment(post.date).format('L');
+    this.event.publ.type="sfdfsdf";
+    console.log(this.event);
   }
 
   secSub(post) {

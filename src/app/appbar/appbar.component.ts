@@ -30,10 +30,11 @@ logout() {
   }
 
 getUser() {
-	this.authService.getUser().subscribe(user => {
-      console.log(user.email);
+	// this.authService.getUser().subscribe(user => {
+ //      console.log(user);
   console.log(localStorage.getItem('isLoggedIn'));
-  });
+  console.log(localStorage.getItem('user'));
+  // });
 }
 
   ngOnInit() {

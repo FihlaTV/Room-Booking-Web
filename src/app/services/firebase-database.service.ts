@@ -16,17 +16,13 @@ export class FirebaseDatabaseService {
   constructor(public db: AngularFireDatabase) {
    	this.itemsRef = this.db.list("test");
 
-   	// this.items = this.itemsRef.snapshotChanges().map(changes => {
-    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    // });
    }
-
    getAllClubs() {
     return this.items = this.itemsRef.valueChanges();
-   }
-
+  }
    pushToDB(obj) {
-    console.log(this.itemsRef.push(obj));
+    let nodeID = JSON.stringify(this.itemsRef.push(obj)).split('firebaseio.com/')[1];
+    console.log(nodeID);
     }
     // return this.itemsRef.push(obj);
 

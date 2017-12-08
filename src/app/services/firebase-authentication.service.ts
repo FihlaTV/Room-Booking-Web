@@ -36,8 +36,8 @@ user: Observable<firebase.User>;
     return this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!');
+      .then(user => {
+        localStorage.setItem('user', JSON.stringify(user));
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);

@@ -1,6 +1,6 @@
 <mat-horizontal-stepper linear="false">
-  <mat-step [stepControl]="generalFormGroup">
-    <form [formGroup]="generalFormGroup" (submit)="generalSubmit(generalFormGroup.value)">
+  <mat-step [stepControl]="genFG">
+    <form [formGroup]="genFG" (submit)="generalSubmit(genFG.value)">
       <ng-template matStepLabel>General Details</ng-template>
       
       <div class="flexContainer">
@@ -10,7 +10,7 @@
           </mat-form-field>
         </div>
         <div>
-          <mat-slide-toggle [checked]="true" formControlName="external" value="true">
+          <mat-slide-toggle formControlName="external" value="external">
             <span class="checkboxLabel">External</span>
           </mat-slide-toggle>
         </div>
@@ -23,7 +23,8 @@
                   required
                   matTextareaAutosize
                   matAutosizeMinRows="2"
-                  matAutosizeMaxRows="5">
+                  matAutosizeMaxRows="5"
+                  >
         </textarea>
       </mat-form-field>
       
@@ -53,100 +54,74 @@
       </div>
 
       <div class="buttonContainer">
-        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!generalFormGroup.valid">Next</button>
+        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!genFG.valid">Next</button>
       </div>
 
     </form>
   </mat-step>
   
-  <mat-step [stepControl]="publicityFormGroup">
-    <form [formGroup]="publicityFormGroup" (submit)="publicitySubmit(publicityFormGroup.value)">
+  <mat-step [stepControl]="pubFG">
+    <form [formGroup]="pubFG" (submit)="publicitySubmit(pubFG.value)">
       <ng-template matStepLabel>Publicity Details
       </ng-template>
-<!-- 
+
     <div class="flexContainer">
-    <div>
-      <span style="font-weight: 700;">Media : </span>
-    </div>
-      <div>
-        <mat-checkbox class="example-margin" formControlName="pub_poster" value="true"><span class="checkboxLabel">Poster</span></mat-checkbox>
-      </div>
-      <div>
-        <mat-checkbox class="example-margin" formControlName="pub_infodesk" value="true"><span class="checkboxLabel">Infodesk</span></mat-checkbox>
-      </div>
-    
-      <div>
-        <mat-checkbox class="example-margin" formControlName="pub_banner" value="true"><span class="checkboxLabel">Banner</span></mat-checkbox>
-      </div>
-      <div>
-        <mat-checkbox class="example-margin" formControlName="pub_digboard" value="true"><span class="checkboxLabel">Digital Board</span></mat-checkbox>
-      </div>
-    </div>
- -->
-    <div class="flexContainer">
-    <div class="locationContainer" style="width: 60%;">
+    <div class="locationContainer" style="width: 50%; margin-right: 20px;">
         <span class="childHeading">Media</span>
       <div class="locationChildCont">
           <span class="checkboxLabel">Poster</span>
-        <mat-checkbox align="end">
-        </mat-checkbox>
+        <mat-checkbox align="end" formControlName="pub_poster" value="yes"></mat-checkbox>
+        <span *ngIf="pubFG.value.pub_poster" style="font-size: 17px; min-width: 30px;" [style.color]="pubFG.value.pub_poster ? '#e91e63' : 'black'">Qty * :<input type="text" formControlName="pub_num_posters" style="width: 35px; height: 17px; font-size: 17px; border: none; margin-left: 10px;border-bottom: 1px solid #e91e63;" required="pubFG.value.pub_poster"> </span>
       </div>
       <div class="locationChildCont">
-          <span class="checkboxLabel">Banner</span>
-        <mat-checkbox align="end">
-        </mat-checkbox>
+          <span class="checkboxLabel" >Banner</span>
+        <mat-checkbox align="end" formControlName="pub_banner"></mat-checkbox>
       </div>
       <div class="locationChildCont">
           <span class="checkboxLabel">Digital Board</span>
-        <mat-checkbox align="end">
-        </mat-checkbox>
+        <mat-checkbox align="end" formControlName="pub_digboard"></mat-checkbox>
       </div>
       <div class="locationChildCont">
           <span class="checkboxLabel">Infodesk</span>
-        <mat-checkbox align="end">
-        </mat-checkbox>
-      </div>
-      
-      <!-- <div class="locationChildCont">
-          <span class="">Academic Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div>
+        <mat-checkbox align="end" formControlName="pub_infodesk"></mat-checkbox>
+      </div>    
       <div class="locationChildCont">
-          <span class="">First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
+          <span class="checkboxLabel">Logistics</span>
+        <mat-checkbox align="end"></mat-checkbox>
       </div>
-      <div class="locationChildCont">
-          <span class="">Non First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div>
-      <div class="locationChildCont">
-          <span class="">KMC</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div> -->
     </div>
 
     <div class="locationContainer">
       <span class="childHeading">Location</span>
       <div class="locationChildCont">
           <span class="">Academic Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
+        <mat-slide-toggle formControlName="pub_acad_blocks" [(ngModel)]="acadBlock"></mat-slide-toggle>
+        <span style="font-size: 13px; margin-top: 0px;" [style.color]="acadBlock ? '#e91e63' : 'black'">({{acadBlocks}})</span>
       </div>
       <div class="locationChildCont">
           <span class="">First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="firstBlock" formControlName="pub_firstYear_blocks"></mat-slide-toggle>
+        <span style="font-size: 13px; margin-top: 0px;" [style.color]="firstBlock ? '#e91e63' : 'black'">({{firstYearBlocks}})</span>
       </div>
       <div class="locationChildCont">
           <span class="">Non First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
+        <mat-slide-toggle formControlName="pub_nonFirstYear_blocks" [(ngModel)]="nonFirstBlock"></mat-slide-toggle>
+        <span style="font-size: 13px; margin-top: 0px;" [style.color]="nonFirstBlock ? '#e91e63' : 'black'">({{nonFirstYearBlocks}})</span>
       </div>
       <div class="locationChildCont">
-          <span class="">KMC</span>
-        <mat-slide-toggle></mat-slide-toggle>
+          <span class="">Messes</span>
+        <mat-slide-toggle formControlName="pub_messes" [(ngModel)]="mess"></mat-slide-toggle>
+        <span style="font-size: 13px; margin-top: 0px;" [style.color]="mess ? '#e91e63' : 'black'">({{messes}})</span>
+      </div>
+      <div class="locationChildCont">
+          <span class="">Other colleges</span>
+        <mat-slide-toggle formControlName="pub_otherColleges" [(ngModel)]="otherCollege"></mat-slide-toggle>
+        <span style="font-size: 13px; margin-top: 0px;" [style.color]="otherCollege ? '#e91e63' : 'black'">({{otherColleges}})</span>
       </div>
     </div>
     </div>
 
-    <div style="margin-top: 30px; width: 30%; margin: 0px auto;">
+    <div style="width: 30%; margin: 0px auto; padding-top: 20px;">
       <mat-form-field>
         <input matInput 
                 placeholder="Start date"
@@ -160,47 +135,127 @@
       
       <div class="buttonContainer">
         <button mat-raised-button matStepperPrevious color="primary">Back</button>
-        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!publicityFormGroup.valid">Next</button>
+        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!pubFG.valid">Next</button>
       </div>
     </form>
   </mat-step>
 
-  <mat-step>
+  <mat-step [stepControl]="monFG">
+    <form [formGroup]="monFG" (submit)="monetarySubmit(monFG.value)">
     <ng-template matStepLabel>Monetary Details</ng-template>
     
+  <div class="flexContainer">
     <div class="locationContainer">
       <div class="locationChildCont">
-          <span class="">Academic Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="paid" formControlName='mon_paid' value="paid"></mat-slide-toggle>
+          <span class="">Paid</span>
       </div>
-      <div class="locationChildCont">
-          <span class="">Academic Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div>
-      <div class="locationChildCont">
-          <span class="">First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div>
-      <div class="locationChildCont">
-          <span class="">Non First Year Hostel Blocks</span>
-        <mat-slide-toggle></mat-slide-toggle>
-      </div>
-      <div class="locationChildCont">
-          <span class="">KMC</span>
-        <mat-slide-toggle></mat-slide-toggle>
+      <div class="locationChildCont" *ngIf="paid">
+        <mat-form-field style="width: 45%; float: left; margin-top: -10px;">
+          <input type="number" matInput placeholder="Members" formControlName='mon_paid_member'>
+        </mat-form-field>
+        <mat-form-field style="width: 45%; float: right; margin-top: -10px;">
+          <input type="number" matInput placeholder="Non Members" formControlName='mon_paid_non_member'>
+        </mat-form-field>
       </div>
     </div>
 
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
+    <div class="locationContainer">
+      <div class="locationChildCont">
+        <mat-slide-toggle [(ngModel)]="certified" formControlName='mon_certi' value="certified"></mat-slide-toggle>
+          <span class="">Certified</span>
+      </div>
+      <div class="locationChildCont" *ngIf="certified">
+        <mat-form-field  style="width: 45%; float: left; margin-top: -10px;">
+          <input type="number" matInput placeholder="Members" formControlName='mon_certi_member'>
+        </mat-form-field>
+        <mat-form-field  style="width: 45%; float: right; margin-top: -10px;">
+          <input type="number" matInput placeholder="Non Members" formControlName='mon_certi_non_member'>
+        </mat-form-field>
+      </div>
     </div>
+  </div>
+    <mat-form-field>
+      <input type="number" required matInput placeholder="Expected Expenditure" formControlName='mon_expected_expenditure'>
+    </mat-form-field>
+
+    <div class="buttonContainer">
+      <button mat-raised-button matStepperPrevious color="primary">Back</button>
+      <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!monFG.valid">Next</button>
+    </div>
+    </form>
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
+    <ng-template matStepLabel>Submit</ng-template>
+    <form [formGroup]="finalFG">
+    <div class="locationContainer">
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Type</div>
+        <div class="value">{{genFG.value.external ? 'External' : 'Internal'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Title</div>
+        <div class="value">{{genFG.value.title}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Description</div>
+        <div class="value">{{genFG.value.desc}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Start Date</div>
+        <div class="value">{{genFG.value.start_date | date:'fullDate'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">End Date</div>
+        <div class="value">{{genFG.value.end_date | date:'fullDate'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Media</div>
+        <div class="value">
+          {{pubFG.value.pub_poster ? 'Poster ' : ''}}
+          {{pubFG.value.pub_banner ? 'Banner ' : ''}}
+          {{pubFG.value.pub_infodesk ? 'Infodesk ' : ''}}
+          {{pubFG.value.pub_digboard ? 'Digital Board ' : ''}}
+        </div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Locations</div>
+        <div class="value">
+          {{pubFG.value.pub_acad_blocks ? acadBlocks : ''}}
+          {{pubFG.value.pub_firstYear_blocks ? firstYearBlocks : ''}}
+          {{pubFG.value.pub_nonFirstYear_blocks ? nonFirstYearBlocks : ''}}
+          {{pubFG.value.pub_messes ? messes : ''}}
+          {{pubFG.value.pub_otherColleges ? otherColleges : ''}}
+        </div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Publicity<br>Start Date</div>
+        <div class="value">{{pubFG.value.pub_start_date | date:'fullDate'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Paid</div>
+        <div class="value">{{monFG.value.mon_paid ? ('Yes ' + 'Members: &#8377;' + monFG.value.mon_paid_member + ' & Non-Members: &#8377;' + monFG.value.mon_paid_non_member) : 'No'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Certified</div>
+        <div class="value">{{monFG.value.mon_certi ? ('Yes ' + 'Members: &#8377;' + monFG.value.mon_certi_member + ' & Non-Members: &#8377;' + monFG.value.mon_certi_non_member) : 'No'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Total Expected Expenditure</div>
+        <div class="value">&#8377;{{monFG.value.mon_expected_expenditure}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="">Additional Notes</div>
+        <div class="value">
+          <textarea rows="5" placeholder="Add any notes here" formControlName="notes"></textarea>
+        </div>
+      </div>
     </div>
+
+    <div class="buttonContainer">
+        <button mat-raised-button matStepperNext color="primary" (click)="allSubmit(genFG.value, pubFG.value, monFG.value, finalFG.value)">Submit</button>
+      </div>
+      </form>
   </mat-step>
 </mat-horizontal-stepper>
