@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FirebaseDatabaseService } from './../../services/firebase-database.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import * as moment from 'moment';
 
@@ -67,6 +69,9 @@ export class EventBookingComponent implements OnInit {
   monFG: FormGroup;
   finalFG: FormGroup;
 
+  animal: string;
+  name: string;
+
   post: any;
   event = new EventBookingComponent.Event();
   qty=23;
@@ -75,7 +80,7 @@ export class EventBookingComponent implements OnInit {
   nonFirstYearBlocks = "IX, X, XIV, XV";
   messes = "FC, Annapurna, Apoorva";
   otherColleges = "KMC, SOC, WGSHA";
-  today = moment().format('L');
+  today = new Date();
 
   acadBlock: any;
   firstBlock: any;
@@ -84,7 +89,10 @@ export class EventBookingComponent implements OnInit {
   otherCollege: any;
 
   constructor(private fb: FormBuilder,
-              private dbService: FirebaseDatabaseService) {
+              private dbService: FirebaseDatabaseService,
+              private dialog: MatDialog,
+              public snackBar: MatSnackBar) {
+            
     this.genFG = this.fb.group({
       'external': [false,],
       'title': ['', Validators.required],
@@ -160,11 +168,54 @@ export class EventBookingComponent implements OnInit {
     this.monetarySubmit(c);
     this.event.notes = d.notes;
     console.log(this.event);
-    this.dbService.pushToDB(this.event);
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(LoginDialog, {
+      maxWidth: '500px',
+      data: { title: this.event.title }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        console.log("pushing to DB");
+        this.openSnackBar("Event submitted for approval", "Yay!", 2000);
+        // this.dbService.pushToDB(this.event);
+      } else {
+        this.openSnackBar("Cancelled", "", 1000);
+        console.log("not pushing to DB");
+      }
+
+    });
   }
 
 
+  openSnackBar(msg, action, duration) {
+    this.snackBar.open(msg, action, {
+      duration: duration,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      direction: 'ltr'
+      });
+    }
 
   ngOnInit() { }
+}
 
+
+@Component({
+  selector: 'login-dialog',
+  templateUrl: 'login-dialog.html',
+})
+export class LoginDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<LoginDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  cancelBut(): void {
+    console.log("cancelled");
+    this.dialogRef.close();
+  }
 }

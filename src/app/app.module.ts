@@ -16,9 +16,6 @@ import {
   MatMenuModule,
   MatButtonModule,
   MatNativeDateModule,
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
 } from '@angular/material';
 import { MatInputModule } from '@angular/material/input'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -29,6 +26,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 // ==================================================================================
 
 
@@ -42,6 +41,7 @@ import { RoomBookingComponent } from './components/room-booking/room-booking.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginDialog } from './components/event-booking/event-booking.component';
 // ===================================================================================
 
 const routes: Routes = [
@@ -92,7 +92,8 @@ export const firebaseConfig = {
     EventBookingComponent,
     RoomBookingComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    LoginDialog
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -114,8 +115,8 @@ export const firebaseConfig = {
     MatNativeDateModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatDialog,
-    MatDialogRef,
+    MatDialogModule,
+    MatSnackBarModule,
 
     HttpModule,
     FormsModule,
@@ -126,6 +127,7 @@ export const firebaseConfig = {
     AngularFireAuthModule,
   ],
   providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginDialog]
 })
 export class AppModule { }

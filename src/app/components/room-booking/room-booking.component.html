@@ -1,45 +1,13 @@
-
-<div *ngIf="!title; else formInfo">
-  
-
-</div>
-
-<form [formGroup]="rForm" (submit)="addPost(rForm.value)">
-<mat-form-field>
-  <input matInput placeholder="title" formControlName="title">
-</mat-form-field>
-<p *ngIf="!rForm.controls['title'].valid && rForm.controls['title'].touched">{{titleAlert}}</p>
-<!-- <p *ngIf="!rForm.controls['title'].valid">{{titleAlert}}</p> -->
-
-
-<mat-form-field>
-  <textarea matInput placeholder="description" formControlName="desc"></textarea>
-</mat-form-field>
-
- <mat-slide-toggle formControlName="external">
-            <span class="checkboxLabel">External</span>
-          </mat-slide-toggle>
-
-<mat-checkbox formControlName="check" value="1" true>Poster</mat-checkbox>
-  
-  <mat-form-field>
-    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Start date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-<input type="submit" [disabled]="!rForm.valid">
-
-</form>
-
-<form [formGroup]="zForm">
-<mat-form-field>
-  <input matInput placeholder="name" formControlName="name">
-</mat-form-field>
-<button (click)="secSub(zForm.value)">HELLO</button>
-
-</form>
-<ng-template #formInfo>
-<p>{{title}}</p>
-<p>{{desc}}</p>
-</ng-template>
+<ol>
+  <li>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="What's your name?">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol>
