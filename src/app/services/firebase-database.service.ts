@@ -9,21 +9,22 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class FirebaseDatabaseService {
 
-	itemsRef: AngularFireList<any[]>;
+	eventsRef: AngularFireList<any[]>;
+  clubsRef: AngularFireList<any[]>;
 	items: Observable<any[]>;
-	clubs: any[];
 
   constructor(public db: AngularFireDatabase) {
-   	this.itemsRef = this.db.list("test");
+   	this.eventsRef = this.db.list("events");
+    this.clubsRef = this.db.list("clubs/" + JSON.parse(localStorage.getItem('user')).uid + "/events");
 
    }
    getAllClubs() {
-    return this.items = this.itemsRef.valueChanges();
+    return this.items = this.eventsRef.valueChanges();
   }
    pushToDB(obj) {
-    let nodeID = JSON.stringify(this.itemsRef.push(obj)).split('firebaseio.com/')[1];
+    let nodeID:any = JSON.stringify(this.eventsRef.push(obj)).split('firebaseio.com/events/')[1];
     console.log(nodeID);
+    let eventID:any = JSON.stringify(this.clubsRef.push(nodeID));
+    console.log(eventID);
     }
-    // return this.itemsRef.push(obj);
-
 }

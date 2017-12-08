@@ -87,6 +87,8 @@ export class EventBookingComponent implements OnInit {
   nonFirstBlock: any;
   mess: any;
   otherCollege: any;
+  paid: any;
+  certified: any;
 
   constructor(private fb: FormBuilder,
               private dbService: FirebaseDatabaseService,
@@ -181,7 +183,8 @@ export class EventBookingComponent implements OnInit {
       if(result) {
         console.log("pushing to DB");
         this.openSnackBar("Event submitted for approval", "Yay!", 2000);
-        // this.dbService.pushToDB(this.event);
+        this.dbService.pushToDB(this.event);
+        
       } else {
         this.openSnackBar("Cancelled", "", 1000);
         console.log("not pushing to DB");
