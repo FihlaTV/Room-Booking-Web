@@ -183,7 +183,7 @@ export class EventBookingComponent implements OnInit {
       if(result) {
         console.log("pushing to DB");
         this.openSnackBar("Event submitted for approval", "Yay!", 2000);
-        this.dbService.pushToDB(this.event);
+        // this.dbService.pushToDB(this.event);
         
       } else {
         this.openSnackBar("Cancelled", "", 1000);

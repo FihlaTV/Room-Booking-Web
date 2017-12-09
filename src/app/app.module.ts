@@ -16,6 +16,7 @@ import {
   MatMenuModule,
   MatButtonModule,
   MatNativeDateModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { MatInputModule } from '@angular/material/input'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -28,6 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table';
 // ==================================================================================
 
 
@@ -42,6 +44,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialog } from './components/event-booking/event-booking.component';
+import { AllEventsComponent } from './components/all-events/all-events.component';
 // ===================================================================================
 
 const routes: Routes = [
@@ -51,8 +54,8 @@ const routes: Routes = [
   {path: 'roomBooking', component : RoomBookingComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'sidenav', component: SideNavComponent}
-
+  {path: 'sidenav', component: SideNavComponent},
+  {path: 'allEvents', component: AllEventsComponent},
 ]
 
 // services
@@ -93,7 +96,8 @@ export const firebaseConfig = {
     RoomBookingComponent,
     ProfileComponent,
     HomeComponent,
-    LoginDialog
+    LoginDialog,
+    AllEventsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -117,6 +121,8 @@ export const firebaseConfig = {
     MatSlideToggleModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
 
     HttpModule,
     FormsModule,
