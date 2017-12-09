@@ -1,7 +1,23 @@
 <div class="example-header">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
+   <input (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</div>
+
+<div class="example-header">
+   <mat-button-toggle-group #group="matButtonToggleGroup">
+  <mat-button-toggle value="left">
+    Pending
+  </mat-button-toggle>
+  <mat-button-toggle value="center">
+    Approved
+  </mat-button-toggle>
+  <mat-button-toggle value="right">
+    All
+  </mat-button-toggle>
+  <mat-button-toggle value="justify" disabled>
+    <mat-icon>format_align_justify</mat-icon>
+  </mat-button-toggle>
+<!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+</mat-button-toggle-group>
 </div>
 
 <div class="example-container mat-elevation-z8">

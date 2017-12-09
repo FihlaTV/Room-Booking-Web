@@ -30,6 +30,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 // ==================================================================================
 
 
@@ -123,6 +124,7 @@ export const firebaseConfig = {
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonToggleModule,
 
     HttpModule,
     FormsModule,
