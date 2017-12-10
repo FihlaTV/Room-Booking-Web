@@ -11,6 +11,8 @@ import { FirebaseAuthenticationService } from './services/firebase-authenticatio
 export class AppComponent {
   
   
-  constructor(public authService: FirebaseAuthenticationService) { }
+  constructor(public authService: FirebaseAuthenticationService) {
+  	console.log('app component.ts');
+  }
 
 }

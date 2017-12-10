@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthenticationService {
 
-  constructor(private http:Http) { }
+  constructor(private http:Http) {
+    console.log('lol');
+  }
 
   login(username:string, password:string) {
 

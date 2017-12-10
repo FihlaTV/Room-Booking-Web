@@ -9,15 +9,20 @@ import { FirebaseDatabaseService } from './../services/firebase-database.service
 })
 export class SideNavComponent implements OnInit {
 
+ allEve: any = [];
  constructor(public dbService:FirebaseDatabaseService) { }
 
- getAllClubs() {
- 	(this.dbService.getAllClubs().subscribe(val => {
- 		console.log(val);
- 	}));
- }
-
-  ngOnInit() {
-  }
+	getAllEvents() {
+	    this.dbService.getMyEventIds().subscribe(ids => {
+			for(var id of ids) {
+				this.dbService.getParticularEvent(id).subscribe(eventDetail => {
+					this.allEve.push({'id': eventDetail.key, 'event': eventDetail.payload.val()});
+					console.log(this.allEve);
+				})
+			}
+		})
+	}
+  
+  ngOnInit() { }
 
 }

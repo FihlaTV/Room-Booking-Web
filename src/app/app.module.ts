@@ -6,6 +6,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { Routes, RouterModule } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import { EventClass } from './classes/event';
+
 
 // Angular material
 import {
@@ -134,7 +136,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService],
+  providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService, EventClass],
   bootstrap: [AppComponent],
   entryComponents: [LoginDialog]
 })

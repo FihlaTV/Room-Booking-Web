@@ -16,10 +16,10 @@ clubName = "CRIBBL"
           private db:FirebaseDatabaseService) { }
 
   getAllClubs() {
-    this.clubs = this.db.getAllClubs();
-    this.clubs.forEach(club => {
-            console.log(club);
-        });
+    // this.clubs = this.db.getAllClubs();
+    // this.clubs.forEach(club => {
+    //         console.log(club);
+    //     });
 }
 
 logout() {
