@@ -16,11 +16,11 @@ export class FirebaseDatabaseService {
   eventsRefx: AngularFireObject<any[]>;
   myClubRef: any;
   
-    eventsRef = this.db.list("events");
-    myClub_EventRef = this.db.list("clubs/" + JSON.parse(localStorage.getItem('user')).uid + "/events");
-    clubsRef = this.db.object('clubs');
-    myClubRef = this.db.object('clubs/' + JSON.parse(localStorage.getItem('user')).uid);
   constructor(public db: AngularFireDatabase) {
+    this.eventsRef = this.db.list("events");
+    this.myClub_EventRef = this.db.list("clubs/" + JSON.parse(localStorage.getItem('user')).uid + "/events");
+    this.clubsRef = this.db.object('clubs');
+    this.myClubRef = this.db.object('clubs/' + JSON.parse(localStorage.getItem('user')).uid);
   console.log('firebase database service.ts');
    }
 

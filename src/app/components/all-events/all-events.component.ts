@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FirebaseDatabaseService } from './../../services/firebase-database.service';
-import { EventClass } from './../../classes/event';
 
 import * as moment from 'moment';
 
@@ -20,8 +19,7 @@ export class AllEventsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dbService: FirebaseDatabaseService,
-              private eve: EventClass) {
+  constructor(private dbService: FirebaseDatabaseService,) {
     // Create 100 users
     const users: EventData[] = [];
     let user:any = {
@@ -34,7 +32,8 @@ export class AllEventsComponent implements OnInit {
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
-    console.log('hey');
+    console.log('all event constructor');
+    console.log(this.allEvents);
   }
 
 
@@ -53,8 +52,11 @@ export class AllEventsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   ngOnInit() {
-    if(this.allEvents.length <= 0)
+    console.log('ng on itit called');
+    if(this.allEvents.length <= 0) {
       this.getAllEvents();
+      console.log('inside if of ngOnInit');
+    }
   }
 
    getAllEvents() {

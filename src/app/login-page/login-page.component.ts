@@ -28,10 +28,12 @@ export class LoginPageComponent implements OnInit {
  login() {
 	this.authService.login(this.model.username, this.model.password)
     .then(user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('events', JSON.stringify([]));
       console.log(user);
     })
     .catch(err => {
-      console.log('unsuccessful login: ' err.message);
+      console.log('unsuccessful login: ', err.message);
     })
   }
 
