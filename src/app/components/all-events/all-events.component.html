@@ -27,19 +27,19 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.start_date}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.start_date}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.end_date}} </mat-cell>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="progress">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.title}} </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
@@ -55,13 +55,13 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-
+<!-- 
 <ol>
   <li *ngFor="let itemx of allEvents">
     {{itemx.event.start_date | date }}
     {{itemx.event.lol}}
   </li>
 </ol>
-<!-- Copyright 2017 Google Inc. All Rights Reserved.
+ --><!-- Copyright 2017 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license -->
