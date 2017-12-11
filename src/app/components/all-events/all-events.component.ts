@@ -15,30 +15,36 @@ export class AllEventsComponent implements OnInit {
   dataSource: MatTableDataSource<EventData>;
 
   allEvents: any = [];
+  events: EventData[] = [];
+  name: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private dbService: FirebaseDatabaseService,) {
-    // Create 100 users
-    const users: EventData[] = [];
-    let user:any = {
-    	id: '12',
-    	title: 'Bhawesh',
-    	start_date: '33',
-    	color: 'red'
-    }
-    for (let i = 1; i <= 100; i++) { users.push(user); }
+    console.log('all-events constructor');
+    // Create 100 events
+    for (let event of this.allEvents) {
+      console.log(event);
+        let user:any = {
+        id: '12',
+        title: event['title'],
+        start_date: event['start_date']
+        color: 'red'
+      }
+      this.events.push(event);
+    } 
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource(this.allEvents);
     console.log('all event constructor');
     console.log(this.allEvents);
   }
 
 
   all() {
-    console.log(JSON.parse(localStorage.getItem('arr')));
+    this.name = 'bhawesh';
+   JSON.parse(localStorage.getItem('events'));
   }
 
   ngAfterViewInit() {
@@ -60,15 +66,27 @@ export class AllEventsComponent implements OnInit {
   }
 
    getAllEvents() {
+    //let x:any = [];
       this.dbService.getMyEventIds().subscribe(ids => {
       for(var id of ids) {
         this.dbService.getParticularEvent(id).subscribe(eventDetail => {
-          this.allEvents.push({'id': eventDetail.key, 'event': eventDetail.payload.val()});
-          
+            if(!this.checkExistance(eventDetail.key, eventDetail.payload.val()))
+              this.allEvents.push({'id': eventDetail.key, 'event': eventDetail.payload.val()});
         })
       }
     })
    }
+
+   checkExistance(id, event): boolean {
+    for (let event of this.allEvents) {
+      if(event['id'] == id) {
+        event['event'] = event;
+        return true;
+      }
+    }
+    return false;
+   }
+
 }
 
 function createNewUser(id: number): EventData {

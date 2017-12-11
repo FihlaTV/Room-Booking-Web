@@ -12,24 +12,16 @@ import * as firebase from "firebase";
 export class LoginPageComponent implements OnInit {
 	 model: any = {};
 
-  constructor(public authService:FirebaseAuthenticationService,
-              private router:Router,) { 
+  constructor(public authService: FirebaseAuthenticationService,
+              private router: Router,) { 
 
-  this.router = router;
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    router.navigate(['/home']);
-  } else {
-    console.log("NOT logged in");
-  }
-});
-  }
+}
 
  login() {
 	this.authService.login(this.model.username, this.model.password)
     .then(user => {
       localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('events', JSON.stringify([]));
+      // localStorage.setItem('events', JSON.stringify([]));
       console.log(user);
     })
     .catch(err => {

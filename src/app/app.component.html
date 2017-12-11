@@ -1,15 +1,9 @@
 <!-- <app-side-nav></app-side-nav> -->
 
-<div
-     
-     class="wrapper"
-     >
-
-<!-- <app-appbar fxFlex="20%"></app-appbar> -->
-<app-appbar *ngIf="authService.user | async"></app-appbar>
+<div class="wrapper" *ngIf="authService.user | async">
+<app-appbar></app-appbar>
 <app-side-nav></app-side-nav>
 <router-outlet></router-outlet>
-<!-- <app-footer></app-footer> -->
-
 </div>
- <!-- <app-login-page></app-login-page> -->
+
+<app-login-page *ngIf="!(authService.user | async)"></app-login-page>

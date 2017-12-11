@@ -21,21 +21,22 @@ export class FirebaseDatabaseService {
     this.myClub_EventRef = this.db.list("clubs/" + JSON.parse(localStorage.getItem('user')).uid + "/events");
     this.clubsRef = this.db.object('clubs');
     this.myClubRef = this.db.object('clubs/' + JSON.parse(localStorage.getItem('user')).uid);
-  console.log('firebase database service.ts');
+    console.log('firebase database service.ts');
+    this.getAllMyEvents();
+
    }
 
    getAllMyEvents() {
     let arr: any = [];
-    return this.myClub_EventRef.valueChanges().subscribe(eventIds=>{
-      for(var eventIdx of eventIds) {
-         this.getParticularEvent(eventIdx).subscribe(data=>{
-          arr.push(data);
-          console.log('arr' + arr);
-          return arr;
-        });
-      }
-    });
-   }
+    this.myClub_EventRef.valueChanges().subscribe(eventIds => {
+         eventIds.forEach(event => {
+            this.getParticularEvent(event).subscribe(data => {
+              console.log('from datbase service: ' + data);
+              
+            });
+         })
+      });
+    }
 
    getParticularEvent(eventId) {
     let eventsRefx = this.db.object('events/' + eventId);
