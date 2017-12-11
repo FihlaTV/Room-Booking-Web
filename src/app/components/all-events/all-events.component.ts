@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FirebaseDatabaseService } from './../../services/firebase-database.service';
 
@@ -11,10 +11,9 @@ import * as moment from 'moment';
 })
 export class AllEventsComponent {
 
-  displayedColumns = ['id', 'name', 'progress', 'color'];
+  displayedColumns = ['id', 'name', 'title', 'color'];
   dataSource: MatTableDataSource<EventData>;
 
-  allEvents: any = [];
   events: EventData[] = [];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,74 +35,45 @@ export class AllEventsComponent {
     // } 
 
     // Assign the data to the data source for the table to render
-    this.getAllMyEvents();
+    for(let eventx of this.dbService.allEvents) {
+      this.events.push(this.createEvents(eventx));
+    }
+
+    this.dataSource = new MatTableDataSource(this.events);
     console.log('all event constructor');
-    console.log(this.allEvents);
+    console.log(this.dbService.allEvents);
   }
 
+  createEvents(eventx): EventData {
+    return {
+      id: eventx.id,
+      title: eventx.event.title,
+      start_date: eventx.event.start_date,
+      end_date: eventx.event.end_date,
+      isApproved: eventx.event.approved
+    };
+  }
 
   all() { }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
-
-  // applyFilter(filterValue: string) {
-  //   filterValue = filterValue.trim(); // Remove whitespace
-  //   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-  //   this.dataSource.filter = filterValue;
-  // }
-  
-   getAllMyEvents() {
-    //let x:any = [];
-      this.dbService.getMyEventIds().subscribe(ids => {
-      for(var id of ids) {
-        this.dbService.getParticularEvent(id).subscribe(eventDetail => {
-            if(!this.checkExistance(eventDetail.key, eventDetail.payload.val()))
-              this.allEvents.push({'id': eventDetail.key, 'event': eventDetail.payload.val()});
-            this.dataSource = new MatTableDataSource(this.allEvents);
-        })
-      }
-    })
-   }
-
-   checkExistance(id, event): boolean {
-    if(this.allEvents) {
-    for (let event of this.allEvents) {
-      if(event['id'] == id) {
-        event['event'] = event;
-        return true;
-      }
-    }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-    return false;
-   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  
+   
 
 }
-
-// function createNewUser(id: number): EventData {
-//   const name =
-//       NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-//       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-//   return {
-//     id: id.toString(),
-//     title: name,
-//     start_date: Math.round(Math.random() * 100).toString(),
-//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-//   };
-// }
-
-// const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-//   'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-// const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-//   'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-//   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
 export interface EventData {
   id: string;
   title: string;
   start_date: string;
-  color: string;
+  end_date: string;
+  isApproved: string;
 }

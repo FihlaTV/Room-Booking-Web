@@ -15,6 +15,7 @@ export class FirebaseDatabaseService {
   clubsRef: AngularFireObject<any[]>;
   eventsRefx: AngularFireObject<any[]>;
   myClubRef: any;
+  allEvents: any = [];
   
   constructor(public db: AngularFireDatabase) {
     this.eventsRef = this.db.list("events");
@@ -23,23 +24,41 @@ export class FirebaseDatabaseService {
     this.myClubRef = this.db.object('clubs/' + JSON.parse(localStorage.getItem('user')).uid);
     console.log('firebase database service.ts');
     this.getAllMyEvents();
-
    }
 
    getAllMyEvents() {
-    let arr: any = [];
-    this.myClub_EventRef.valueChanges().subscribe(eventIds => {
-         eventIds.forEach(event => {
-            this.getParticularEvent(event).subscribe(data => {
-              console.log('from datbase service: ' + data);
-              
-            });
-         })
-      });
+    //let x:any = [];
+      this.getMyEventIds().subscribe(ids => {
+        if(ids.length < this.allEvents.length)
+          this.allEvents = [];
+      for(var id of ids) {
+        console.log(id);
+        this.getParticularEvent(id).subscribe(eventDetail => {
+          if(eventDetail.key) {
+            if(!this.checkExistance(eventDetail.key, eventDetail.payload.val()))
+              this.allEvents.push({'id': eventDetail.key, 'event': eventDetail.payload.val()});
+              console.log('pushing;');
+              console.log(this.allEvents);
+          }
+            })
+      }
+    })
+   }
+
+   checkExistance(id, eventx): boolean {
+    if(this.allEvents && id) {
+      for (let event of this.allEvents) {
+        if(event['id'] == id) {
+          event['event'] = eventx;
+          return true;
+        }
+      }
     }
+    return false;
+   }
 
    getParticularEvent(eventId) {
-    let eventsRefx = this.db.object('events/' + eventId);
+    let eventsRefx= this.db.object('events/' + eventId);
     return eventsRefx.snapshotChanges();
    }
 

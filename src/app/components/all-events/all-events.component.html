@@ -1,3 +1,4 @@
+<div class="flexContainer">
 <div class="example-header">
    <input (keyup)="applyFilter($event.target.value)" placeholder="Search">
 </div>
@@ -27,25 +28,25 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.event.start_date}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.start_date}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.event.end_date}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.end_date}} </mat-cell>
     </ng-container>
 
     <!-- Progress Column -->
-    <ng-container matColumnDef="progress">
+    <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.event.title}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="color">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.id}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -55,13 +56,14 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-<!-- 
+</div>
+
 <ol>
-  <li *ngFor="let itemx of allEvents">
-    {{itemx.event.start_date | date }}
-    {{itemx.event.lol}}
+  <li *ngFor="let itemx of dbService.allEvents">
+    {{itemx.event.start_date | date}}
+    {{itemx.event.title}}
   </li>
 </ol>
- --><!-- Copyright 2017 Google Inc. All Rights Reserved.
+ <!-- Copyright 2017 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license -->

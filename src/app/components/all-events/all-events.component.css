@@ -1,3 +1,8 @@
+.flexContainer {
+	margin: 0px auto;
+	width: 99%;
+}
+
 .example-container {
   display: flex;
   flex-direction: column;
