@@ -27,7 +27,7 @@ export class FirebaseDatabaseService {
    }
 
    getAllMyEvents() {
-    //let x:any = [];
+    // let x:any = [];
       this.getMyEventIds().subscribe(ids => {
         if(ids.length < this.allEvents.length)
           this.allEvents = [];

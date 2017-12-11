@@ -45,6 +45,7 @@ export class EventBookingComponent implements OnInit {
   }
 
   static Event = class {
+    isApproved: boolean;
     uid: any;
     external: boolean;
     title: string;
@@ -58,6 +59,7 @@ export class EventBookingComponent implements OnInit {
 
     constructor() {
       this.uid = JSON.parse(localStorage.getItem('user')).uid;
+      this.isApproved = false;
       this.publish_date = moment().format('L');
       this.publicity = new EventBookingComponent.Publicity();
       this.monetary = new EventBookingComponent.Monetary();

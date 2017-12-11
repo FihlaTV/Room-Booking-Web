@@ -4,66 +4,49 @@
 </div>
 
 <div class="example-header">
-   <mat-button-toggle-group #group="matButtonToggleGroup">
-  <mat-button-toggle value="left" (click)="all()">
-    Pending
-  </mat-button-toggle>
-  <mat-button-toggle value="center">
-    Approved
-  </mat-button-toggle>
-  <mat-button-toggle value="right">
-    All
-  </mat-button-toggle>
-  <mat-button-toggle value="justify" disabled>
-    <mat-icon>format_align_justify</mat-icon>
-  </mat-button-toggle>
-<!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
-</mat-button-toggle-group>
+<button mat-button (click)="filterPending()">Pending</button>
+<button mat-button (click)="filterApproved()">Approved</button>
+<button mat-button (click)="filterAll()">All</button>
+   
 </div>
 
 <div class="example-container mat-elevation-z8">
 
   <mat-table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.start_date}} </mat-cell>
+      <mat-cell *matCellDef="let row" (click)=alertx(row)> {{row.event.start_date}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.end_date}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.end_date}} </mat-cell>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.title}} </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="color">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.external ? 'External' : 'Internal'}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">
     </mat-row>
+
   </mat-table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
 </div>
 
-<ol>
-  <li *ngFor="let itemx of dbService.allEvents">
-    {{itemx.event.start_date | date}}
-    {{itemx.event.title}}
-  </li>
-</ol>
  <!-- Copyright 2017 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license -->
