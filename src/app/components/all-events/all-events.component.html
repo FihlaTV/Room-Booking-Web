@@ -34,7 +34,15 @@
     <!-- Color Column -->
     <ng-container matColumnDef="color">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.event.external ? 'External' : 'Internal'}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.event.external ? 'External' : 'Internal'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Buttons </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="openDialog(row)">View</button>
+        <button mat-raised-button (click)="editEvent(row)">Edit</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

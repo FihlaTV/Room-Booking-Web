@@ -5,6 +5,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 import * as moment from 'moment';
 
 @Component({
@@ -91,11 +93,20 @@ export class EventBookingComponent implements OnInit {
   otherCollege: any;
   paid: any;
   certified: any;
-
+  sub: any;
+  page: any;
   constructor(private fb: FormBuilder,
               private dbService: FirebaseDatabaseService,
               private dialog: MatDialog,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              private route: ActivatedRoute) {
+      
+      this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        // Defaults to 0 if no query param provided.
+        console.log(params);
+      });
             
     this.genFG = this.fb.group({
       'external': [false,],

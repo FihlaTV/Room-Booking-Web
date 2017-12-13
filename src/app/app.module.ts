@@ -39,13 +39,12 @@ import { AppComponent } from './app.component';
 import { AppbarComponent } from './appbar/appbar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { EventBookingComponent } from './components/event-booking/event-booking.component'
+import { EventBookingComponent, LoginDialog } from './components/event-booking/event-booking.component'
 import { RoomBookingComponent } from './components/room-booking/room-booking.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginDialog } from './components/event-booking/event-booking.component';
-import { AllEventsComponent } from './components/all-events/all-events.component';
+import { AllEventsComponent, ViewEventDialog } from './components/all-events/all-events.component';
 // ===================================================================================
 
 const routes: Routes = [
@@ -98,7 +97,8 @@ export const firebaseConfig = {
     ProfileComponent,
     HomeComponent,
     LoginDialog,
-    AllEventsComponent
+    AllEventsComponent,
+    ViewEventDialog
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -136,6 +136,6 @@ export const firebaseConfig = {
   ],
   providers: [AuthenticationService, FirebaseAuthenticationService, FirebaseDatabaseService],
   bootstrap: [AppComponent],
-  entryComponents: [LoginDialog]
+  entryComponents: [LoginDialog, ViewEventDialog]
 })
 export class AppModule { }

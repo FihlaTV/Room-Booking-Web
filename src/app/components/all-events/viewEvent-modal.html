@@ -1,0 +1,68 @@
+    <div class="locationContainer">
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Type</div>
+        <div class="value">{{data.event.external ? 'External' : 'Internal'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Title</div>
+        <div class="value">{{data.event.title}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Description</div>
+        <div class="value">{{data.event.desc}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Start Date</div>
+        <div class="value">{{data.event.start_date | date:'fullDate'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">End Date</div>
+        <div class="value">{{data.event.end_date | date:'fullDate'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Media</div>
+        <div class="value">
+          {{data.event.publicity.poster ? 'Poster ' : ''}}
+          {{data.event.publicity.banner ? 'Banner ' : ''}}
+          {{data.event.publicity.infodesk ? 'Infodesk ' : ''}}
+          {{data.event.publicity.digboard ? 'Digital Board ' : ''}}
+        </div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Locations</div>
+        <div class="value">
+          {{data.event.publicity.pub_acad_blocks ? acadBlocks : ''}}
+          {{data.event.publicity.pub_firstYear_blocks ? firstYearBlocks : ''}}
+          {{data.event.publicity.pub_nonFirstYear_blocks ? nonFirstYearBlocks : ''}}
+          {{data.event.publicity.pub_messes ? messes : ''}}
+          {{data.event.publicity.pub_otherColleges ? otherColleges : ''}}
+        </div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Publicity<br>Start Date</div>
+        <div class="value">{{data.event.publicity.pub_start_date}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Paid</div>
+        <div class="value">{{data.event.monetary.mon_paid ? ('Yes ' + 'Members: &#8377;' + data.event.monetary.mon_paid_member + ' & Non-Members: &#8377;' + data.event.monetary.mon_paid_non_member) : 'No'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Certified</div>
+        <div class="value">{{data.event.monetary.mon_certi ? ('Yes ' + 'Members: &#8377;' + data.event.monetary.mon_certi_member + ' & Non-Members: &#8377;' + data.event.monetary.mon_certi_non_member) : 'No'}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Total Expected Expenditure</div>
+        <div class="value">&#8377;{{data.event.monetary.mon_expected_expenditure}}</div>
+      </div>
+      <div class="locationChildCont confirmContainer">
+        <div class="key">Additional Notes</div>
+        <div class="value">
+          {{data.event.notes}}
+        </div>
+      </div>
+    </div>
+
+    <div mat-dialog-actions style="display: block; text-align: center;">
+      <button mat-raised-button [mat-dialog-close]="true" color="primary" tabindex="2" (click)="editEvent(data)">Edit</button>
+      <button mat-raised-button (click)="cancelBut()" color="warn">Cancel</button>
+    </div>
