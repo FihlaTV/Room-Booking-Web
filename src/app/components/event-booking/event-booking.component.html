@@ -6,11 +6,11 @@
       <div class="flexContainer">
         <div class="titleContainer">
           <mat-form-field>
-            <input type="text" matInput placeholder="Title" formControlName="title" required>
+            <input type="text" matInput placeholder="Title" formControlName="title" value={{editEvent.title}} required>
           </mat-form-field>
         </div>
         <div>
-          <mat-slide-toggle formControlName="external" value="external">
+          <mat-slide-toggle formControlName="external" checked={{editEvent.external}}>
             <span class="checkboxLabel">External</span>
           </mat-slide-toggle>
         </div>
@@ -24,6 +24,7 @@
                   matTextareaAutosize
                   matAutosizeMinRows="2"
                   matAutosizeMaxRows="5"
+                  value={{this.editEvent.desc}}
                   >
         </textarea>
       </mat-form-field>
@@ -35,7 +36,8 @@
                     placeholder="Start date"
                     [matDatepicker]="picker" 
                     formControlName='start_date'
-                    [min]="today">
+                    [min]="today"
+                    [value]="parsed_start_date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -46,7 +48,8 @@
                     placeholder="End date"
                     [matDatepicker]="picker2" 
                     formControlName='end_date'
-                    [min]="today">
+                    [min]="genFG.value.start_date"
+                    [value]="parsed_end_date">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
@@ -54,7 +57,7 @@
       </div>
 
       <div class="buttonContainer">
-        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!genFG.valid">Next</button>
+        <button type="submit" mat-raised-button matStepperNext color="primary" [disabled]="!(paramsMode=='edit' || genFG.valid)">Next</button>
       </div>
 
     </form>
@@ -70,20 +73,23 @@
         <span class="childHeading">Media</span>
       <div class="locationChildCont">
           <span class="checkboxLabel">Poster</span>
-        <mat-checkbox align="end" formControlName="pub_poster" value="yes"></mat-checkbox>
-        <span *ngIf="pubFG.value.pub_poster" style="font-size: 17px; min-width: 30px;" [style.color]="pubFG.value.pub_poster ? '#e91e63' : 'black'">Qty * :<input type="text" formControlName="pub_num_posters" style="width: 35px; height: 17px; font-size: 17px; border: none; margin-left: 10px;border-bottom: 1px solid #e91e63;" required="pubFG.value.pub_poster"> </span>
+        <mat-checkbox align="end" formControlName="pub_poster" [(ngModel)]="editEvent_publicity.poster"></mat-checkbox>
+        <span *ngIf="pubFG.value.pub_poster" style="font-size: 17px; min-width: 30px;" [style.color]="pubFG.value.pub_poster ? '#e91e63' : 'black'">
+        Qty * :
+        <input type="text" formControlName="pub_num_posters" style="width: 35px; height: 17px; font-size: 17px; border: none; margin-left: 10px;border-bottom: 1px solid #e91e63;" required="pubFG.value.pub_poster" value={{editEvent_publicity.pub_num_posters}}>
+        </span>
       </div>
       <div class="locationChildCont">
           <span class="checkboxLabel" >Banner</span>
-        <mat-checkbox align="end" formControlName="pub_banner"></mat-checkbox>
+        <mat-checkbox align="end" formControlName="pub_banner" [(ngModel)]="editEvent_publicity.banner"></mat-checkbox>
       </div>
       <div class="locationChildCont">
           <span class="checkboxLabel">Digital Board</span>
-        <mat-checkbox align="end" formControlName="pub_digboard"></mat-checkbox>
+        <mat-checkbox align="end" formControlName="pub_digboard" [(ngModel)]="editEvent_publicity.digboard"></mat-checkbox>
       </div>
       <div class="locationChildCont">
           <span class="checkboxLabel">Infodesk</span>
-        <mat-checkbox align="end" formControlName="pub_infodesk"></mat-checkbox>
+        <mat-checkbox align="end" formControlName="pub_infodesk" [(ngModel)]="editEvent_publicity.infodesk"></mat-checkbox>
       </div>    
       <div class="locationChildCont">
           <span class="checkboxLabel">Logistics</span>
@@ -127,7 +133,8 @@
                 placeholder="Start date"
                 [matDatepicker]="picker3" 
                 formControlName='pub_start_date'
-                [min]="today">
+                [min]="today"
+                [value]="parsed_pub_start_date">
         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
         <mat-datepicker #picker3></mat-datepicker>
       </mat-form-field>

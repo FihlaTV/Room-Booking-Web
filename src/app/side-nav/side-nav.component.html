@@ -2,7 +2,7 @@
 <mat-drawer-container class="example-container">
 
   <mat-drawer mode="side" opened="true">
-    <button mat-button routerLink="/eventBooking" routerLinkActive="active current">
+    <button mat-button [routerLink]="['eventBooking', 'new', '']" routerLinkActive="active current">
     <mat-icon>event</mat-icon>
       Event Booking
     </button>

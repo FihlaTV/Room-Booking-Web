@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FirebaseDatabaseService } from './../../services/firebase-database.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -126,10 +127,10 @@ export class AllEventsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log("pushing to DB");
+        console.log("routing to edit");
         
       } else {
-        console.log("not pushing to DB");
+        console.log("cancelled");
       }
 
     });
@@ -174,7 +175,8 @@ export class ViewEventDialog {
 
   constructor(
     public dialogRef: MatDialogRef<ViewEventDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router) { }
 
   cancelBut(): void {
     console.log("cancelled");
@@ -182,6 +184,6 @@ export class ViewEventDialog {
   }
 
   editEvent(data) {
-
+    this.router.navigate(['eventBooking', 'edit', data.id]);
   }
 }

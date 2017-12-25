@@ -50,9 +50,10 @@ import { AllEventsComponent, ViewEventDialog } from './components/all-events/all
 const routes: Routes = [
   {path: 'app', component : AppComponent},
   {path: 'login', component : LoginPageComponent},
-  {path: 'eventBooking', component : EventBookingComponent},
+  {path: 'eventBooking/:mode', component : EventBookingComponent,pathMatch: 'full'},
+  {path: 'eventBooking/:mode/:id', component : EventBookingComponent, pathMatch: 'full'},
   {path: 'roomBooking', component : RoomBookingComponent},
-  {path: 'profile', component: ProfileComponent},
+  // {path: 'profile', component: ProfileComponent},
   {path: 'home', component: HomeComponent},
   {path: 'sidenav', component: SideNavComponent},
   {path: 'allEvents', component: AllEventsComponent},

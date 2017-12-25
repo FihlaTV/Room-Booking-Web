@@ -93,20 +93,37 @@ export class EventBookingComponent implements OnInit {
   otherCollege: any;
   paid: any;
   certified: any;
-  sub: any;
-  page: any;
+  paramsMode: string;
+  paramsId: string;
+  editEvent: any = {};
+  editEvent_publicity: any = {};
+  editEvent_monetary: any = {};
+  parsed_start_date: any;
+  parsed_end_date: any;
+  parsed_pub_start_date: any;
+
   constructor(private fb: FormBuilder,
               private dbService: FirebaseDatabaseService,
               private dialog: MatDialog,
               public snackBar: MatSnackBar,
               private route: ActivatedRoute) {
       
-      this.sub = this.route
-      .queryParams
-      .subscribe(params => {
-        // Defaults to 0 if no query param provided.
-        console.log(params);
-      });
+    this.route.params.subscribe( params => {
+      console.log(params);
+      this.paramsMode = params.mode;
+      this.paramsId = params.id;
+      if(params.mode === 'edit') {
+        this.dbService.getParticularEvent(params.id).subscribe(event => {
+          this.editEvent = event.payload.val();
+          this.editEvent_publicity = event.payload.val().publicity;
+          this.editEvent_monetary = event.payload.val().monetary;
+          this.parsed_start_date = new Date(event.payload.val().start_date);
+          this.parsed_end_date = new Date(event.payload.val().end_date);
+          this.parsed_pub_start_date = new Date(event.payload.val().publicity.start_date);
+          console.log(this.editEvent.publicity);
+        })
+      }
+    });
             
     this.genFG = this.fb.group({
       'external': [false,],
@@ -195,8 +212,9 @@ export class EventBookingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         console.log("pushing to DB");
+        console.log(this.event);
         this.openSnackBar("Event submitted for approval", "Yay!", 2000);
-        this.dbService.pushToDB(this.event);
+        // this.dbService.pushToDB(this.event);
         
       } else {
         this.openSnackBar("Cancelled", "", 1000);
