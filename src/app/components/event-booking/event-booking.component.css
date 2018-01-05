@@ -93,3 +93,24 @@ mat-slide-toggle {
 	margin-left: 10px;
 	min-width: 70%;
 }
+
+.confirmContainer {
+       display: flex;
+       min-height: 0px;
+       justify-content: space-between;
+       vertical-align: middle;
+       background-color: #FAFAFB;
+       cursor: default;
+}
+
+.confirmContainer:hover {
+       color: #e91e63;
+}
+
+.value > textarea {
+       width:100%;
+       background-color: #FAFAFB;
+       border: none;
+       border-left: 1px solid rgba(0,0,0,0.1);
+       padding-left: 5px; 
+}
