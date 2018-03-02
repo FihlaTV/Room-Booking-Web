@@ -13,12 +13,12 @@
       Room Booking
     </button>
 
-    <button mat-button>
+    <button mat-button (click)="getUser()">
     <mat-icon>room</mat-icon>
       Something
     </button>
 
-    <button mat-button routerLink="/allEvents" routerLinkActive="active current" (click)="getAllEvents()">
+    <button mat-button routerLink="/allEvents" routerLinkActive="active current">
     <mat-icon>room</mat-icon>
       All Events
     </button>

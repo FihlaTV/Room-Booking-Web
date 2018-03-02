@@ -84,8 +84,18 @@ export class FirebaseDatabaseService {
       }
     });
    }
+  
     getMyClubDetails() {
         // subscribe to this wherever calling
         return this.myClubRef.valueChanges();
-     }
+    }
+
+    isFA() {
+      return this.getMyClubDetails().map(res => {
+        if(res.isFA)
+          return true
+        else
+          return false
+      })
+    }
 }

@@ -48,6 +48,9 @@ export class EventBookingComponent implements OnInit {
 
   static Event = class {
     isApproved: boolean;
+    faApproved: boolean; // faculty advisor
+    adApproved: boolean; // associate director
+    soApproved: boolean; // security officer
     uid: any;
     external: boolean;
     title: string;
@@ -61,7 +64,7 @@ export class EventBookingComponent implements OnInit {
 
     constructor() {
       this.uid = JSON.parse(localStorage.getItem('user')).uid;
-      this.isApproved = false;
+      this.isApproved = this.faApproved = this.adApproved = this.soApproved = false;
       this.publish_date = moment().format('L');
       this.publicity = new EventBookingComponent.Publicity();
       this.monetary = new EventBookingComponent.Monetary();

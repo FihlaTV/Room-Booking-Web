@@ -10,5 +10,9 @@ import { FirebaseDatabaseService } from './../services/firebase-database.service
 export class SideNavComponent {
 
  constructor(private authService: FirebaseAuthenticationService, private dbService: FirebaseDatabaseService) { }
- getAllEvents(){}
+ getUser() {
+ 	this.dbService.isFA().subscribe(res => {
+ 		console.log(res);
+ 	})
+ }
 }
